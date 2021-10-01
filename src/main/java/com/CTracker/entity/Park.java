@@ -1,13 +1,17 @@
 package com.CTracker.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="park")
-@Data
+//@Data
+@Getter
+@Setter
 public class Park {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
