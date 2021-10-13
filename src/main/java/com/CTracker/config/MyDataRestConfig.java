@@ -27,6 +27,5 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 .forDomainType(Park.class);
               //  .withItemExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
               //  .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
-
     }
 }
