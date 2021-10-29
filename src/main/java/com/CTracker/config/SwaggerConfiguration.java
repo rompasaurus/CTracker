@@ -26,10 +26,10 @@ public class SwaggerConfiguration {
 
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
-                .title("Reddit Clone API")
+                .title("Coaster Tracker")
                 .version("1.0")
                 .description("API for Reddit Clone Application")
-                .contact(new Contact("Sai Upadhyayula", "http://programmingtechie.com", "xyz@email.com"))
+                .contact(new Contact("Michael McHenry", "http://CoasterTracker.com", "michael.e.mchenry@email.com"))
                 .license("Apache License Version 2.0")
                 .build();
     }

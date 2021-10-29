@@ -55,7 +55,9 @@ public class AuthService {
                 "please click on the below url to activate your account : " +
                 "http://localhost:8080/api/auth/accountVerification/" + token));
     }
-
+//    On whichever method you declare @Transactional the boundary of transaction starts and boundary ends when method completes.
+//    If you are using JPA call then all commits are with in this transaction boundary.
+//    essentially if you mark @transactional spring will roll back the transaction if an exception occurs
     @Transactional(readOnly = true)
     public User getCurrentUser() {
         org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.

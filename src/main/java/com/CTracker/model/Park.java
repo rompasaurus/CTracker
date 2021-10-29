@@ -1,17 +1,15 @@
 package com.CTracker.model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name="park")
-//@Data
-@Getter
-@Setter
+@Builder
 public class Park {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

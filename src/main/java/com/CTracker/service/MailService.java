@@ -19,6 +19,9 @@ class MailService {
     private final JavaMailSender mailSender;
     private final MailContentBuilder mailContentBuilder;
 
+    //async allows the email to be sent out prior to the user being persisted to the db
+    //need to @enableasync in AppNam Application.java to allow this
+    //alternatives if scale becomes an issue and reliability rabbitmq and activemq messaging systems ensure reliability
     @Async
     void sendMail(NotificationEmail notificationEmail) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {

@@ -15,10 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-@EnableWebSecurity
+//this class holds the complete security config for the backend
+@EnableWebSecurity //this is a spring security annotation
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    //WebSecurityConfigurerAdapter is the base class providing the default sec configs
 
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -32,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().and()
+                //cookies are not used and session states are not track csrf can safely be disabled
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/**")

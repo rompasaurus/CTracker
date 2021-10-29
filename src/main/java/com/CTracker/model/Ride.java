@@ -1,14 +1,19 @@
 package com.CTracker.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name="ride")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Builder
 public class Ride {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
