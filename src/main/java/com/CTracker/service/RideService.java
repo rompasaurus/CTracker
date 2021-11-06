@@ -35,8 +35,10 @@ public class RideService {
 
     public Ride save(RideRequest rideRequest) {
         Park pullPark = parkRepository.findById(rideRequest.getParkId())
-                .orElseThrow(() -> new ParkNotFoundException(rideRequest.toString()));;
+                .orElseThrow(() -> new ParkNotFoundException(rideRequest.toString()));
+        log.debug("Pulled Park from RideRequest: "+ pullPark);
         Ride savedRide = rideRepository.save(rideMapper.map(rideRequest,pullPark));
+        log.debug("Saving Ride: "+ savedRide);
         return savedRide;
     }
 }

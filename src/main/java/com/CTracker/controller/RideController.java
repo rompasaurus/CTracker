@@ -28,6 +28,7 @@ public class RideController {
     }
     @PostMapping
     public ResponseEntity<Void> createRide(@RequestBody RideRequest rideRequest) {
+        log.debug("Saving Ride vie RideRequest: "+ rideRequest);
         rideService.save(rideRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

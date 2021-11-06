@@ -1,5 +1,7 @@
 package com.CTracker.service;
 
+import com.CTracker.config.ConnectionPropertiesComponent;
+import com.CTracker.config.WebConfig;
 import com.CTracker.dto.AuthenticationResponse;
 import com.CTracker.dto.LoginRequest;
 import com.CTracker.dto.RefreshTokenRequest;
@@ -12,6 +14,7 @@ import com.CTracker.repository.UserRepository;
 import com.CTracker.repository.VerificationTokenRepository;
 import com.CTracker.security.JwtProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,6 +41,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
     private final RefreshTokenService refreshTokenService;
+    private final ConnectionPropertiesComponent connectionPropertiesComponent;
 
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
@@ -50,10 +54,12 @@ public class AuthService {
         userRepository.save(user);
 
         String token = generateVerificationToken(user);
-        mailService.sendMail(new NotificationEmail("Please Activate your Account",
-                user.getEmail(), "Thank you for signing up to Spring Reddit, " +
-                "please click on the below url to activate your account : " +
-                "http://localhost:8080/api/auth/accountVerification/" + token));
+            mailService.sendMail(new NotificationEmail("Please Activate your Account",
+                    user.getEmail(), "Thank you for signing up to CTracker, " +
+                    "please click on the below url to activate your account : " +
+                    connectionPropertiesComponent.allowedEndpoint +
+                    "/api/auth/accountVerification/" +
+                    token));
     }
 //    On whichever method you declare @Transactional the boundary of transaction starts and boundary ends when method completes.
 //    If you are using JPA call then all commits are with in this transaction boundary.
