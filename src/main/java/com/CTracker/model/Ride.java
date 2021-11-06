@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.Date;
 
 @Data
@@ -35,7 +36,7 @@ public class Ride {
 
     @Column(name = "last_rode")
     @CreationTimestamp
-    private Date lastRode;
+    private Instant lastRode;
 
     @OneToOne
     @JoinColumn(name = "park_id", nullable = false)

@@ -14,14 +14,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RideDto {
+public class RideRequest {
     private Long id;
     private String name;
     private int timesRode;
     private String description;
     private Date firstRode;
     private Date lastRode;
-    private String parkId;
+    private Long parkId;
 }
 
 

@@ -4,7 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
-
+import java.time.Instant;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,5 +25,5 @@ public class Park {
 
     @Column(name = "open_date")
     @CreationTimestamp
-    private Date openDate;
+    private Instant openDate;
 }
