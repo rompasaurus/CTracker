@@ -20,6 +20,7 @@ import java.util.List;
 @Slf4j
 public class ParkController {
     private final ParkService parkService;
+    private final RideService rideService;
     @GetMapping
     public ResponseEntity<List<Park>> getAllParks() {
         return ResponseEntity
@@ -30,5 +31,12 @@ public class ParkController {
     public ResponseEntity<Void> createPark(@RequestBody ParkRequest parkRequest) {
         parkService.save(parkRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    @GetMapping("/byRide/{rideId}")
+    public ResponseEntity<Park> getAllParks(@PathVariable Long rideId) {
+        Ride ride = rideService.getRideById(rideId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(ride.getPark());
     }
 }

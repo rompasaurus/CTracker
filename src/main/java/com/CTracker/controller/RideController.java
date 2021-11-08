@@ -32,4 +32,10 @@ public class RideController {
         rideService.save(rideRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    @GetMapping("/{parkId}")
+    public ResponseEntity<List<Ride>> getAllRidesFromPark(@PathVariable Long parkId) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(rideService.getAllRidesByPark(parkId));
+    }
 }

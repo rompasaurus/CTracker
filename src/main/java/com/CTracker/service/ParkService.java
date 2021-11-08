@@ -4,6 +4,7 @@ import com.CTracker.dto.ParkRequest;
 import com.CTracker.dto.SubredditDto;
 import com.CTracker.mapper.ParkMapper;
 import com.CTracker.model.Park;
+import com.CTracker.model.Ride;
 import com.CTracker.model.Subreddit;
 import com.CTracker.repository.ParkRepository;
 import lombok.AllArgsConstructor;
@@ -33,4 +34,5 @@ public class ParkService {
         Park savedPark = parkRepository.save(parkMapper.map(parkRequest));
         return savedPark;
     }
+
 }
