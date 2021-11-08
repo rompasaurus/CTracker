@@ -21,7 +21,7 @@ import java.util.List;
 public class RideController {
     private final RideService rideService;
     @GetMapping
-    public ResponseEntity<List<Ride>> getAllSubreddits() {
+    public ResponseEntity<List<Ride>> getAllRides() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(rideService.getAllRides());
