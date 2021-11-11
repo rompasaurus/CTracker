@@ -24,4 +24,27 @@ public class RCDBPage {
     @Column(name = "size")
     private int size;
 
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "ride")
+    private String ride;
+
+    @Column(name = "park")
+    private String park;
+
+    @Column(name = "parkName")
+    private String parkName;
+
+    @Column(name = "locationString")
+    private String locationString;
+
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "city")
+    private String city;
 }

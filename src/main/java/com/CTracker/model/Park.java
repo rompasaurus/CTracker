@@ -26,4 +26,13 @@ public class Park {
     @Column(name = "open_date")
     @CreationTimestamp
     private Instant openDate;
+
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "city")
+    private String city;
 }
