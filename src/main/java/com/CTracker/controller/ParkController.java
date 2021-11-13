@@ -39,4 +39,50 @@ public class ParkController {
                 .status(HttpStatus.OK)
                 .body(ride.getPark());
     }
+    @GetMapping("/countries")
+    public ResponseEntity<List<String>> getAllCountries() {
+        log.debug("Pulling all countries: ");
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(parkService.getAllCountries());
+    }
+    @GetMapping("/states/{country}")
+    public ResponseEntity<List<String>> getAllStatesByCountry(@PathVariable String country) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(parkService.getAllStatesByCountry(country));
+    }
+    @GetMapping("/cities/{state}")
+    public ResponseEntity<List<String>> getAllCitiesByState(@PathVariable String state) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(parkService.getAllCitiesByState(state));
+    }
+
+    @GetMapping("/city/{city}")
+    public ResponseEntity<List<Park>> getAllParksByCity(@PathVariable String city) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(parkService.getAllParksByCity(city));
+    }
+    @GetMapping("/all/cities")
+    public ResponseEntity<List<String>> getAllCitiesByState() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(parkService.getAllCities());
+    }
+    @GetMapping("/state/{state}")
+    public ResponseEntity<List<Park>> getAllParksByState(@PathVariable String state) {
+        log.debug("Pulling all Parks by state: " + state);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(parkService.getAllParksByState(state));
+    }
+    @GetMapping("/country/{country}")
+    public ResponseEntity<List<Park>> getAllParksByCountry(@PathVariable String country) {
+        log.debug("Pulling all Parks by state: " + country);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(parkService.getAllParksByCountry(country));
+    }
 }

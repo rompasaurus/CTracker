@@ -11,7 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import springfox.documentation.annotations.Cacheable;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -23,6 +25,7 @@ public class ParkService {
     private final ParkRepository parkRepository;
     private final ParkMapper parkMapper;
 
+    @Cacheable("parks")
     @Transactional(readOnly = true)
     public List<Park> getAllParks() {
         return parkRepository.findAll()
@@ -35,4 +38,40 @@ public class ParkService {
         return savedPark;
     }
 
+    public List<String> getAllCountries() {
+        return parkRepository.findAllCountries()
+                .stream()
+                .collect(toList());
+    }
+    public List<String> getAllCitiesByState(String state) {
+        return parkRepository.findAllCitiesByState(state)
+                .stream()
+                .collect(toList());
+    }
+    public List<String> getAllStatesByCountry(String country) {
+        return parkRepository.findAllStatesByCountry(country)
+                .stream()
+                .collect(toList());
+    }
+    public List<Park> getAllParksByCity(String city) {
+        return parkRepository.findAllParksByCity(city)
+                .stream()
+                .collect(toList());
+    }
+    public List<Park> getAllParksByState(String state) {
+        return parkRepository.findAllParksByState(state)
+                .stream()
+                .collect(toList());
+    }
+    public List<Park> getAllParksByCountry(String country) {
+        return parkRepository.findAllParksByCountry(country)
+                .stream()
+                .collect(toList());
+    }
+
+    public List<String> getAllCities() {
+            return parkRepository.findAllCities()
+                    .stream()
+                    .collect(toList());
+    }
 }

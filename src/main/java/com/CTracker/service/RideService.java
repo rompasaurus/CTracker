@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import springfox.documentation.annotations.Cacheable;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,14 +43,14 @@ public class RideService {
         log.debug("Saving Ride: "+ savedRide);
         return savedRide;
     }
-
+    @Cacheable("rides")
     public List<Ride> getAllRidesByPark(Long parkId) {
         //Not sure if this is the best way to find by park, but it appears to work
         Park park = new Park();
         park.setId(parkId);
         return rideRepository.findAllByPark(park);
     }
-
+    @Cacheable("ride")
     public Ride getRideById(Long rideId) {
         return rideRepository.findById(rideId)
                 .orElseThrow(() -> new RideNotFoundException("Ride not found with id of : "+rideId));

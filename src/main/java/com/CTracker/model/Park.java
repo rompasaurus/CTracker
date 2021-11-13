@@ -17,7 +17,7 @@ public class Park {
     private Long id;
 
 
-    @Column(name = "park_name")
+    @Column(unique=true,name = "park_name")
     private String parkName;
 
     @Column(name = "location")

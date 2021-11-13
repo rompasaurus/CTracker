@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -25,6 +26,7 @@ public class Ride {
     private String name;
 
     @Column(name = "times_rode")
+    @Value("${some.key:0}")
     private int timesRode;
 
     @Column(name = "description")
