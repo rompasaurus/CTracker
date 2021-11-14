@@ -38,4 +38,10 @@ public class MyRideController {
         myRideService.save(myRideRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    @DeleteMapping("/delete/{rideId}")
+    public ResponseEntity deleteMyRide(@PathVariable long rideId){
+        myRideService.deleteMyRide(rideId);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
 }

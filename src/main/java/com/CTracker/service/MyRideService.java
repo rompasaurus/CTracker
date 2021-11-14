@@ -2,6 +2,7 @@ package com.CTracker.service;
 
 import com.CTracker.dto.MyRideRequest;
 import com.CTracker.dto.SubredditDto;
+import com.CTracker.exceptions.RideNotFoundException;
 import com.CTracker.exceptions.SpringRedditException;
 import com.CTracker.mapper.MyRideMapper;
 import com.CTracker.model.*;
@@ -48,6 +49,9 @@ public class MyRideService {
         return myRideRepository.findAllByUser(user)
                 .stream()
                 .collect(toList());
+    }
+    public void deleteMyRide(Long id) {
+        myRideRepository.deleteById(id);
     }
 
 }
