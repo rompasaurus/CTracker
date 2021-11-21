@@ -43,5 +43,13 @@ public class MyRideController {
         myRideService.deleteMyRide(rideId);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
+    @PostMapping("/update/")
+    public ResponseEntity<Void> updateMyRide(@RequestBody MyRideRequest myRideRequest) {
+        log.debug("Saving MyRide via RideRequest: "+ myRideRequest);
+        MyRide myRide = myRideService.getMyRideById(myRideRequest.getId());
+        myRide.setTimesRode(myRideRequest.getTimesRode());
+        myRideService.save(myRide);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
 }

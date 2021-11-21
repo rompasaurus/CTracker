@@ -41,6 +41,11 @@ public class MyRideService {
         myRideRequest.setId(save.getId());
         return myRideRequest;
     }
+    @Transactional
+    public MyRide save(MyRide myRide) {
+        MyRide save = myRideRepository.save(myRide);
+        return save;
+    }
 
     @Transactional(readOnly = true)
     public List<MyRide> getAll(String username) {
@@ -52,6 +57,10 @@ public class MyRideService {
     }
     public void deleteMyRide(Long id) {
         myRideRepository.deleteById(id);
+    }
+
+    public MyRide getMyRideById(Long id){
+        return  myRideRepository.getById(id);
     }
 
 }
