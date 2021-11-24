@@ -28,6 +28,13 @@ public class AuthController {
         return new ResponseEntity<>("User Registration Successful",
                 OK);
     }
+
+    @PostMapping("/resetEmail")
+    public ResponseEntity<String> resetEmail(@RequestBody String email) {
+        authService.resetEmail(email);
+        return new ResponseEntity<>("Password Reset Email Sent", OK);
+    }
+
     @GetMapping("accountVerification/{token}")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verifyAccount(token);
@@ -48,5 +55,10 @@ public class AuthController {
     public ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
         refreshTokenService.deleteRefreshToken(refreshTokenRequest.getRefreshToken());
         return ResponseEntity.status(OK).body("Refresh Token Deleted Successfully!!");
+    }
+
+    @PostMapping("/password/set/{token}")
+    public ResponseEntity<String> refreshTokens(@PathVariable String token,  @RequestBody String password) {
+        return ResponseEntity.status(OK).body("Password Reset successfully for user: " + authService.changePassword(token,password).getUsername());
     }
 }

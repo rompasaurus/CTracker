@@ -1,7 +1,6 @@
 package com.CTracker.service;
 
 import com.CTracker.config.ConnectionPropertiesComponent;
-import com.CTracker.config.WebConfig;
 import com.CTracker.dto.AuthenticationResponse;
 import com.CTracker.dto.LoginRequest;
 import com.CTracker.dto.RefreshTokenRequest;
@@ -14,7 +13,7 @@ import com.CTracker.repository.UserRepository;
 import com.CTracker.repository.VerificationTokenRepository;
 import com.CTracker.security.JwtProvider;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,6 +28,7 @@ import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 @Transactional
@@ -121,5 +121,29 @@ public class AuthService {
     public boolean isLoggedIn() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
+    }
+
+    public void resetEmail(String email){
+        User user = userRepository.findByEmail(email);
+        log.info("User Pulled: "+user+ " Using email:  "+ email);
+        String token = generateVerificationToken(user);
+        mailService.sendMail(new NotificationEmail(
+                "Ride Tally Password Reset Email for "+ user.getUsername(),
+                user.getEmail(), "Hey YOU, did you want to reset your password?!?! " +
+                "If so please click on the below url to activate your account : " +
+                connectionPropertiesComponent.allowedOriginSubnet +
+                "/setPassword/" +
+                token));
+    }
+    public User changePassword(String validationToken, String password) {
+        Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(validationToken);
+        return fetchUserAndSetPassword(verificationToken.orElseThrow(() -> new SpringRedditException("Invalid Token")),passwordEncoder.encode(password));
+    }
+    private User fetchUserAndSetPassword(VerificationToken verificationToken, String password) {
+        String username = verificationToken.getUser().getUsername();
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new SpringRedditException("User not found with name - " + username));
+        verificationTokenRepository.delete(verificationToken);
+        user.setPassword(password);
+        return userRepository.save(user);
     }
 }
