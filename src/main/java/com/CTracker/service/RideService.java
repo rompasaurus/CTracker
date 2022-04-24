@@ -3,7 +3,6 @@ package com.CTracker.service;
 import com.CTracker.dto.RideRequest;
 import com.CTracker.exceptions.ParkNotFoundException;
 import com.CTracker.exceptions.RideNotFoundException;
-import com.CTracker.exceptions.SubredditNotFoundException;
 import com.CTracker.mapper.RideMapper;
 import com.CTracker.model.Park;
 import com.CTracker.model.Ride;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import springfox.documentation.annotations.Cacheable;
 
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 

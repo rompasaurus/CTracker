@@ -1,11 +1,8 @@
 package com.CTracker.service;
 
 import com.CTracker.dto.ParkRequest;
-import com.CTracker.dto.SubredditDto;
 import com.CTracker.mapper.ParkMapper;
 import com.CTracker.model.Park;
-import com.CTracker.model.Ride;
-import com.CTracker.model.Subreddit;
 import com.CTracker.repository.ParkRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import springfox.documentation.annotations.Cacheable;
 
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;

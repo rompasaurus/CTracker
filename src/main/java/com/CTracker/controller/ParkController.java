@@ -1,7 +1,6 @@
 package com.CTracker.controller;
 
 import com.CTracker.dto.ParkRequest;
-import com.CTracker.dto.PostRequest;
 import com.CTracker.model.Park;
 import com.CTracker.model.Ride;
 import com.CTracker.service.ParkService;
