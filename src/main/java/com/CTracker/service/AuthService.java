@@ -130,7 +130,7 @@ public class AuthService {
         mailService.sendMail(new NotificationEmail(
                 "Ride Tally Password Reset Email for "+ user.getUsername(),
                 user.getEmail(), "Hey YOU, did you want to reset your password?!?! " +
-                "If so please click on the below url to activate your account : " +
+                "If so please click on the below url to reset your password : " +
                 connectionPropertiesComponent.allowedOriginSubnet +
                 "/setPassword/" +
                 token));
