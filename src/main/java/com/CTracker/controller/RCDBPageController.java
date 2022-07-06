@@ -21,7 +21,8 @@ public class RCDBPageController {
     @PostMapping("/page/{pageId}")
     public ResponseEntity<Void> createPageEntry(@PathVariable Long pageId,@RequestBody String pageData) {
         log.debug("SAVING PAGE DATA FOR PAGE ID: " + pageId);
-        RCDBPage rcdbPage = new RCDBPage(pageId,pageData,pageData.length(),rcdbPageService.extractTitle(pageData),
+        RCDBPage rcdbPage = new RCDBPage(pageId,pageData,pageData.length(),
+                rcdbPageService.extractTitle(pageData),
                 rcdbPageService.extractRideName(rcdbPageService.extractTitle(pageData)),
                 rcdbPageService.extractPark(rcdbPageService.extractTitle(pageData)),
                 rcdbPageService.extractParkName(rcdbPageService.extractTitle(rcdbPageService.extractPark(rcdbPageService.extractTitle(pageData)))),
